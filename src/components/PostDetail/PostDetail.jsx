@@ -36,7 +36,7 @@ const POST_DETAIL = gql`
         }
       }
       content
-      comments(where: {orderby: COMMENT_DATE, , order: ASC}) {
+      comments(where: {orderby: COMMENT_DATE, order: ASC}, first: 100) {
         nodes {
           content
           author {
@@ -63,9 +63,10 @@ const PostDetail = () => {
 
   const [getPost, result] = useLazyQuery(POST_DETAIL);
   const [postComment] = useMutation(POST_COMMENT, {
-    refetchQueries: [{ query: POST_DETAIL }]
+    refetchQueries: [{ query: POST_DETAIL }, 'PostById']
   });
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [lastComment, setLastComment] = useState({});
 
   useEffect(() => {
     const showPost = (id) => {
@@ -73,7 +74,7 @@ const PostDetail = () => {
     };
     const id = '"'+window.location.href.split('=')[1]+'"';
     showPost(id);
-  }, []);
+  }, [lastComment]);
 
   const paintComments = () => result.data.post.comments.nodes.map((comment, i) =><CommentCard comment={comment} key={uuidv4()}/>);
 
@@ -81,12 +82,13 @@ const PostDetail = () => {
     e.preventDefault();
     const authorName = e.target.elements.author.value;
     const contentBody = e.target.elements.content.value;
-    // const comment = {'author':{'node':{'name': authorName}} , 'id': uuidv4(), 'content': contentBody};
+    const comment = {'author':{'node':{'name': authorName}} , 'id': uuidv4(), 'content': contentBody};
     if(authorName.length > 0 && contentBody.length > 0 ){
       postComment({ variables: {'commentOn': result.data.post.databaseId, 'content': contentBody, 'author': authorName}});
-      setError('')
+      setError('');
+      setLastComment(comment);
     }else{
-      setError('All fields must be completed')
+      setError('All fields must be completed');
     };
     e.target.reset();
   }
