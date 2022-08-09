@@ -3,7 +3,7 @@ import { CircleLoader } from 'react-spinners';
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
-import DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
 import CommentCard from '../CommentCard';
 
 const POST_COMMENT = gql`
