@@ -6,6 +6,14 @@
     border-bottom: 1px solid $primary;
 }
 
+.comment-txt{
+    display: flex;
+}
+
+.comment-txt *{
+    padding: 0 0.1rem;
+}
+
 .comment-author{
     margin-bottom: 2.5rem;
 }

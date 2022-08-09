@@ -1,9 +1,14 @@
 import React from "react";
+import DOMPurify from 'dompurify'
 
 const CommentCard = ({comment}) => {
 
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(comment.content)
+  })
+
   return <div className="comment">
-          <p><b>Comment:</b> {comment.content.replace( /(<([^>]+)>)/ig, '').replace('&#8217;', "'")}</p>
+          <div className="comment-txt"><b>Comment:</b><p dangerouslySetInnerHTML={sanitizedData()}></p></div>
           <p className="comment-author"><b>Author:</b> {comment.author.node.name}</p>
         </div>;
 };

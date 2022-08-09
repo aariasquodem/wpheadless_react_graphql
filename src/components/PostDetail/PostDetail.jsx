@@ -3,6 +3,7 @@ import { CircleLoader } from 'react-spinners';
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
+import DOMPurify from 'dompurify'
 import CommentCard from '../CommentCard';
 
 const POST_COMMENT = gql`
@@ -66,7 +67,7 @@ const PostDetail = () => {
     refetchQueries: [{ query: POST_DETAIL }, 'PostById']
   });
   const [error, setError] = useState('');
-  const [lastComment, setLastComment] = useState({});
+  // const [lastComment, setLastComment] = useState({});
 
   useEffect(() => {
     const showPost = (id) => {
@@ -74,7 +75,11 @@ const PostDetail = () => {
     };
     const id = '"'+window.location.href.split('=')[1]+'"';
     showPost(id);
-  }, [lastComment]);
+  }, []);
+
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(result.data.post.content)
+  })
 
   const paintComments = () => result.data.post.comments.nodes.map((comment, i) =><CommentCard comment={comment} key={uuidv4()}/>);
 
@@ -82,11 +87,11 @@ const PostDetail = () => {
     e.preventDefault();
     const authorName = e.target.elements.author.value;
     const contentBody = e.target.elements.content.value;
-    const comment = {'author':{'node':{'name': authorName}} , 'id': uuidv4(), 'content': contentBody};
+    // const comment = {'author':{'node':{'name': authorName}} , 'id': uuidv4(), 'content': contentBody};
     if(authorName.length > 0 && contentBody.length > 0 ){
       postComment({ variables: {'commentOn': result.data.post.databaseId, 'content': contentBody, 'author': authorName}});
       setError('');
-      setLastComment(comment);
+      // setLastComment(comment);
     }else{
       setError('All fields must be completed')
     };
@@ -103,8 +108,8 @@ const PostDetail = () => {
             <div className="article-body">
               <h2>{result.data.post.title}</h2>
               <Link to={`/postby/?author=${result.data.post.author.node.slug}`}><h5>{result.data.post.author.node.name}</h5></Link>
-              <img src={result.data.post.featuredImage.node.mediaItemUrl} alt={result.data.post.featuredImage.node.altText} />
-              <p>{result.data.post.content.replace( /(<([^>]+)>)/ig, '')}</p>
+              <img src={result.data.post.featuredImage.node.mediaItemUrl} alt={result.data.post.featuredImage.node.altText} className="intro-img" />
+              <div dangerouslySetInnerHTML={sanitizedData()}></div>
             </div>
             <div className='article-comments'>
               <h3>Comments</h3>
