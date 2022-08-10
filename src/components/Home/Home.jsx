@@ -48,8 +48,6 @@ const Home = () => {
 
   const paintCards = () => data.posts.nodes.map(post=> <PostCard post={post} key={uuidv4()}/>);
 
-  if(error) return <h2>{error.message}</h2>
-
   const hasNextPage = () => {
     if(data.posts.pageInfo.hasNextPage === true){
       fetchMore({
@@ -78,6 +76,8 @@ const Home = () => {
   //     console.log('No prev page');
   //   }
   // };
+
+  if(error) return <h2>{error.message}</h2>
 
   return <>
           {loading
