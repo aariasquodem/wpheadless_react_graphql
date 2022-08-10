@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { gql, useLazyQuery } from '@apollo/client';
 import { CircleLoader } from 'react-spinners';
@@ -42,6 +42,8 @@ const PostByAuthor = () => {
 
   const [getPosts, result] = useLazyQuery(POSTS_BY_AUTHOR);
 
+  const [noMore, setNoMore] = useState('');
+
   useEffect(() => {
     const showPosts = (slug) => {
       getPosts({variables: {first: numOfPosts, 'slug': '"' + slug + '"'}});
@@ -63,7 +65,7 @@ const PostByAuthor = () => {
         }
       });
     }else{
-      console.log('No next page');
+      setNoMore('This author has no more posts');
     }
   };
 
@@ -74,6 +76,7 @@ const PostByAuthor = () => {
   if(result.data) return <div>
                           {paintCards()}
                           <div>
+                          <p className="no-more">{noMore}</p>
                             <button onClick={hasNextPage} className='more-btn'>+</button>
                           </div>
                         </div>;

@@ -25,6 +25,10 @@
     width: 85%;
 }
 
+figure a img{
+    pointer-events: none;
+}
+
 .article-comments{
     @include card;
     text-align: start;

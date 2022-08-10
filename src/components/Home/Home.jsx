@@ -45,6 +45,7 @@ const Home = () => {
   });
 
   // const [pageNum, setPageNum] = useState(1);
+  const [noMore, setNoMore] = useState('');
 
   const paintCards = () => data.posts.nodes.map(post=> <PostCard post={post} key={uuidv4()}/>);
 
@@ -59,7 +60,7 @@ const Home = () => {
       });
       // setPageNum(pageNum+1);
     }else{
-      console.log('No next page');
+      setNoMore('There are no more posts');
     }
   };
 
@@ -87,6 +88,7 @@ const Home = () => {
                 <div>
                   {/* <button onClick={hasPrevPage}>Prev</button>
                   <p>{pageNum}</p> */}
+                  <p className="no-more">{noMore}</p>
                   <button onClick={hasNextPage} className='more-btn'>+</button>
                 </div>
               </div>
