@@ -44,7 +44,7 @@ const Home = () => {
     variables:{first: numOfPosts, after: null, before: null}
   });
 
-  const [pageNum, setPageNum] = useState(1);
+  // const [pageNum, setPageNum] = useState(1);
 
   const paintCards = () => data.posts.nodes.map(post=> <PostCard post={post} key={uuidv4()}/>);
 
@@ -55,28 +55,29 @@ const Home = () => {
       fetchMore({
         variables: {after: data.posts.pageInfo.endCursor, before: null},
         updateQuery: (prevResult, {fetchMoreResult}) => {
-          return fetchMoreResult
+          fetchMoreResult.posts.nodes = prevResult.posts.nodes.concat(fetchMoreResult.posts.nodes);
+          return fetchMoreResult;
         }
       });
-      setPageNum(pageNum+1);
+      // setPageNum(pageNum+1);
     }else{
       console.log('No next page');
     }
   };
 
-  const hasPrevPage = () => {
-    if(data.posts.pageInfo.hasPreviousPage === true){
-      fetchMore({
-        variables: {after: null, before: data.posts.pageInfo.startCursor},
-        updateQuery: (prevResult, {fetchMoreResult}) => {
-          return fetchMoreResult
-        }
-      });
-      setPageNum(pageNum-1);
-    }else{
-      console.log('No prev page');
-    }
-  };
+  // const hasPrevPage = () => {
+  //   if(data.posts.pageInfo.hasPreviousPage === true){
+  //     fetchMore({
+  //       variables: {after: null, before: data.posts.pageInfo.startCursor},
+  //       updateQuery: (prevResult, {fetchMoreResult}) => {
+  //         return fetchMoreResult
+  //       }
+  //     });
+  //     setPageNum(pageNum-1);
+  //   }else{
+  //     console.log('No prev page');
+  //   }
+  // };
 
   return <>
           {loading
@@ -84,9 +85,9 @@ const Home = () => {
             : <div>
                 {paintCards()}
                 <div>
-                  <button onClick={hasPrevPage}>Prev</button>
-                  <p>{pageNum}</p>
-                  <button onClick={hasNextPage}>Next</button>
+                  {/* <button onClick={hasPrevPage}>Prev</button>
+                  <p>{pageNum}</p> */}
+                  <button onClick={hasNextPage} className='more-btn'>+</button>
                 </div>
               </div>
             }

@@ -1,1 +1,13 @@
 @import '../utils/mixins.scss';
+@import '../utils/variables.scss';
+
+.more-btn{
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+    background-color: $primary;
+    color: $title-color;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
