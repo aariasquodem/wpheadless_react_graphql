@@ -3,38 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { gql, useLazyQuery } from '@apollo/client';
 import { CircleLoader } from 'react-spinners';
 import PostCard from '../PostCard';
-
-const POSTS_BY_AUTHOR = gql`
-  query PostByAuthor($first: Int!, $after: String, $slug: String!) {
-    posts(first: $first, after: $after, where: {authorName: $slug}) {
-      edges {
-        node {
-          id
-          author {
-            node {
-              id
-              name
-              slug
-              username
-            }
-          }
-          title
-          excerpt
-          featuredImage {
-            node {
-              altText
-              mediaItemUrl
-            }
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-`;
+import { POSTS_BY_AUTHOR } from "../../graphql/queries";
 
 const numOfPosts = 2;
 

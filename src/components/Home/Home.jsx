@@ -2,39 +2,8 @@ import React, {useState} from "react";
 import {gql, useQuery} from '@apollo/client';
 import {CircleLoader} from 'react-spinners';
 import { v4 as uuidv4 } from 'uuid';
+import { ALL_POSTS } from "../../graphql/queries";
 import PostCard from '../PostCard';
-
-const ALL_POSTS = gql`
-  query AllPosts($first: Int!, $before: String, $after: String) {
-    posts(first: $first, after: $after, before: $before) {
-      nodes {
-        author {
-          node {
-            name
-            slug
-            id
-            username
-          }
-        }
-        id
-        title
-        excerpt
-        featuredImage {
-          node {
-            mediaItemUrl
-            altText
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-        hasPreviousPage
-        startCursor
-      }
-    }
-  }
-`;
 
 const numOfPosts = 2;
 

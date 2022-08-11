@@ -1,25 +1,9 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
-import {gql, useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {CircleLoader} from 'react-spinners';
+import {ALL_AUTHORS} from '../../graphql/queries';
 import AuthorCard from '../AuthorCard';
-
-const ALL_AUTHORS = gql`
-  query AllAuthors {
-    users {
-      nodes {
-        avatar {
-          url
-        }
-        firstName
-        lastName
-        name
-        nickname
-        slug
-      }
-    }
-  }
-`;
 
 const Authors = () => {
 

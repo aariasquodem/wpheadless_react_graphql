@@ -5,61 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import DOMPurify from 'dompurify';
 import {userContext} from '../../context/userContext';
+import {POST_COMMENT} from '../../graphql/mutations';
+import {POST_DETAIL} from '../../graphql/queries';
 import CommentCard from '../CommentCard';
-
-const POST_COMMENT = gql`
-mutation CREATE_COMMENT($commentOn: Int!, $content: String!, $author: String!) {
-  createComment(input: {
-    commentOn: $commentOn, 
-    content: $content, 
-    author: $author
-  }) {
-    success
-    comment {
-      id
-      content
-      author {
-        node {
-          name
-        }
-      }
-    }
-  }
-}
-`;
-
-const POST_DETAIL = gql`
-  query PostById($id: ID!) {
-    post(id: $id) {
-      author {
-        node {
-          name
-          slug
-        }
-      }
-      content
-      comments(where: {orderby: COMMENT_DATE, order: ASC}, first: 100) {
-        nodes {
-          content
-          author {
-            node {
-              name
-            }
-          }
-          id
-        }
-      }
-      title(format: RENDERED)
-      featuredImage {
-        node {
-          mediaItemUrl
-          altText
-        }
-      }
-      databaseId
-    }
-  }
-`;
 
 const PostDetail = () => {
 
