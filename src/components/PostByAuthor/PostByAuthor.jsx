@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { CircleLoader } from 'react-spinners';
 import PostCard from '../PostCard';
 import { POSTS_BY_AUTHOR } from "../../graphql/queries";

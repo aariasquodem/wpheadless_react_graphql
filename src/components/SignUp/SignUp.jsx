@@ -1,9 +1,11 @@
 import React, {useContext} from "react";
+import { useNavigate } from "react-router-dom";
 import {userContext} from '../../context/userContext';
 
 const SignUp = () => {
 
   const {setLogged} = useContext(userContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,6 +14,7 @@ const SignUp = () => {
     const password = e.target.pass.value;
     const user = {'username': username, 'email': email, 'password': password};
     setLogged(true);
+    navigate('/');
   };
 
   return <div>

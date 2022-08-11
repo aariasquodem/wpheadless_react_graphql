@@ -1,13 +1,16 @@
 import React, {useContext} from "react";
 import {userContext} from '../../context/userContext';
+import { useNavigate } from "react-router-dom";
 import Nav from '../Nav';
 
 const Header = () => {
 
   const {setLogged, logged} = useContext(userContext);
+  const navigate = useNavigate();
 
   const logOut = () => {
     setLogged(false);
+    navigate('/');
   };
 
   return <header>
