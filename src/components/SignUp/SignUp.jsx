@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
+import {userContext} from '../../context/userContext';
 
 const SignUp = () => {
+
+  const {setLogged} = useContext(userContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -8,6 +11,7 @@ const SignUp = () => {
     const email = e.target.email.value;
     const password = e.target.pass.value;
     const user = {'username': username, 'email': email, 'password': password};
+    setLogged(true);
   };
 
   return <div>

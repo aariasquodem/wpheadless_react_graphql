@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { CircleLoader } from 'react-spinners';
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import DOMPurify from 'dompurify';
+import {userContext} from '../../context/userContext';
 import CommentCard from '../CommentCard';
 
 const POST_COMMENT = gql`
@@ -62,6 +63,8 @@ const POST_DETAIL = gql`
 
 const PostDetail = () => {
 
+  const {logged} = useContext(userContext);
+
   const [getPost, result] = useLazyQuery(POST_DETAIL);
   const [postComment] = useMutation(POST_COMMENT, {
     refetchQueries: [{ query: POST_DETAIL }, 'PostById']
@@ -117,11 +120,11 @@ const PostDetail = () => {
               <form onSubmit={handleSubmit}>
                 <div className="author-comment">
                   <label htmlFor="author"><b>Name:</b> </label>
-                  <input type="text" name="author"/>
+                  {logged ? <input type="text" name="author" /> : <input type="text" name="author" disabled/>}
                 </div>
                 <div className="content-comment">
                   <label htmlFor="content"><b>Comment:</b> </label>
-                  <textarea name="content" rows="4" cols="50"/>
+                  {logged ? <textarea name="content" rows="4" cols="50" /> : <textarea name="content" rows="4" cols="50" disabled/>}
                 </div>
                 <p className='error'>{error}</p>
                 <input type="submit" value="Send" className="send-comment"/>
