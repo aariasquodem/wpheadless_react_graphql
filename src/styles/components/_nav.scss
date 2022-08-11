@@ -4,6 +4,7 @@
 .menu__box{
     list-style: none;
     @include flex-evenly;
+    padding-left: 0;
 }
 
 .menu__item{
