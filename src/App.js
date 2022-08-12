@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {userContext} from './context/userContext';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from "firebase/firestore";
+import {auth, db} from './firebase';
 import Main from './components/Main';
 import Header from './components/Header';
 import './styles/styles.scss';
@@ -16,10 +19,30 @@ const client = new ApolloClient({
 function App() {
 
   const [logged, setLogged] = useState(false);
+  const [loggedUserName, setLoggedUserName] = useState('');
+
+  useEffect(() => {
+      onAuthStateChanged(auth, user => {
+        if (user) {
+          const uid = user.uid;
+          const getUser = async () => {
+            const docRef = doc(db, "users", uid);
+            const docSnap = await getDoc(docRef);
+            setLoggedUserName(docSnap._document.data.value.mapValue.fields.username.stringValue);
+          };
+          getUser();
+          setLogged(true);
+        } else {
+          setLogged(false);
+        }
+      });
+}, []);
 
   const userObj = {
     logged,
-    setLogged
+    setLogged,
+    loggedUserName,
+    setLoggedUserName
   };
 
   return (

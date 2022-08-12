@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import { CircleLoader } from 'react-spinners';
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { gql, useMutation, useLazyQuery } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import DOMPurify from 'dompurify';
 import {userContext} from '../../context/userContext';
 import {POST_COMMENT} from '../../graphql/mutations';
@@ -11,14 +11,13 @@ import CommentCard from '../CommentCard';
 
 const PostDetail = () => {
 
-  const {logged} = useContext(userContext);
+  const {logged, loggedUserName} = useContext(userContext);
 
   const [getPost, result] = useLazyQuery(POST_DETAIL);
   const [postComment] = useMutation(POST_COMMENT, {
     refetchQueries: [{ query: POST_DETAIL }, 'PostById']
   });
   const [error, setError] = useState('');
-  // const [lastComment, setLastComment] = useState({});
 
   useEffect(() => {
     const showPost = (id) => {
@@ -36,15 +35,14 @@ const PostDetail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const authorName = e.target.elements.author.value;
     const contentBody = e.target.elements.content.value;
-    // const comment = {'author':{'node':{'name': authorName}} , 'id': uuidv4(), 'content': contentBody};
-    if(authorName.length > 0 && contentBody.length > 0 ){
-      postComment({ variables: {'commentOn': result.data.post.databaseId, 'content': contentBody, 'author': authorName}});
+    if(logged && contentBody.length > 0 ){
+      postComment({ variables: {'commentOn': result.data.post.databaseId, 'content': contentBody, 'author': loggedUserName}});
       setError('');
-      // setLastComment(comment);
+    }else if(!logged){
+      setError('You must be logged to send comments');
     }else{
-      setError('All fields must be completed')
+      setError("You can't send an empty comment")
     };
     e.target.reset();
   }
@@ -66,10 +64,6 @@ const PostDetail = () => {
               <h3>Comments</h3>
               {paintComments()}
               <form onSubmit={handleSubmit}>
-                <div className="author-comment">
-                  <label htmlFor="author"><b>Name:</b> </label>
-                  {logged ? <input type="text" name="author" /> : <input type="text" name="author" disabled/>}
-                </div>
                 <div className="content-comment">
                   <label htmlFor="content"><b>Comment:</b> </label>
                   {logged ? <textarea name="content" rows="4" cols="50" /> : <textarea name="content" rows="4" cols="50" disabled/>}

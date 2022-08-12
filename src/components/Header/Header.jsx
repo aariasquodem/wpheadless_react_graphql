@@ -1,16 +1,20 @@
 import React, {useContext} from "react";
 import {userContext} from '../../context/userContext';
 import { useNavigate } from "react-router-dom";
+import {auth} from '../../firebase';
+import {signOut} from "firebase/auth";
 import Nav from '../Nav';
 
 const Header = () => {
 
-  const {setLogged, logged} = useContext(userContext);
+  const {setLogged, logged, setLoggedUserName} = useContext(userContext);
   const navigate = useNavigate();
 
-  const logOut = () => {
+  const logOut = async() => {
+    await signOut(auth);
     setLogged(false);
-    navigate('/');
+    setLoggedUserName('');
+    // navigate('/');
   };
 
   return <header>
