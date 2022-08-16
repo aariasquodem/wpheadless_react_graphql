@@ -14,7 +14,7 @@ const Header = () => {
     await signOut(auth);
     setLogged(false);
     setLoggedUserName('');
-    // navigate('/');
+    navigate('/');
   };
 
   return <header>

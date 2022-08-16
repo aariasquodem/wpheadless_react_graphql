@@ -2,12 +2,12 @@ import React, {useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {userContext} from '../../context/userContext';
 import {db, auth} from '../../firebase';
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc,getDoc, doc } from "firebase/firestore";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const SignUp = () => {
 
-  const {setLogged} = useContext(userContext);
+  const {setLogged, setLoggedUserName} = useContext(userContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -16,19 +16,27 @@ const SignUp = () => {
     const username = e.target.username.value;
     const email = e.target.email.value;
     const password = e.target.pass.value;
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      await setDoc(doc(db, "users", user.uid), {
-        'username': username,
-        'email': email
-      });
-      setLogged(true);
-      setError('');
-      // navigate('/');
-    } catch (error) {
-      console.log('Error:', error);
-      setError('Invalid user or password');
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-])(?=.{8,})/;
+    if(regexPassword.test(password)){
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await setDoc(doc(db, "users", user.uid), {
+          'username': username,
+          'email': email
+        });
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        setError('');
+        navigate('/');
+        setLogged(true);
+        setLoggedUserName(docSnap._document.data.value.mapValue.fields.username.stringValue);
+      } catch (error) {
+        console.log('Error:', error);
+        setError('Invalid user or password');
+      }
+    } else{
+      setError('Password must contain at least 8 alphanumeric characters, 1 uppercase letter and a special character');
     }
   };
 
@@ -46,7 +54,7 @@ const SignUp = () => {
               <label htmlFor="pass">Password: </label>
               <input type="password" name="pass"/>
             </div>
-            <p>{error}</p>
+            <p className="error">{error}</p>
             <input type="submit" value={"Sign Up"}/>
           </form>
         </div>;

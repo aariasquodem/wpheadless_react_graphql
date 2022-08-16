@@ -16,7 +16,6 @@ const PostByAuthor = () => {
   useEffect(() => {
     const showPosts = (slug) => {
       getPosts({variables: {first: numOfPosts, 'slug': '"' + slug + '"'}});
-      console.log('esto busco', result);
     };
     const slug = '"'+window.location.href.split('=')[1]+'"';
     showPosts(slug);
@@ -45,7 +44,7 @@ const PostByAuthor = () => {
   if(result.data) return <div>
                           {paintCards()}
                           <div>
-                          <p className="no-more">{noMore}</p>
+                            <p className="no-more">{noMore}</p>
                             <button onClick={hasNextPage} className='more-btn'>+</button>
                           </div>
                         </div>;
