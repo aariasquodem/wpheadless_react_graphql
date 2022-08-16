@@ -1,0 +1,49 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.form{
+    background-color: $item-bg;
+    width: 48%;
+    padding: 2rem 0;
+    margin: 1.5rem auto;
+    border-radius: 5px;
+}
+
+.signup > div{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0.25rem auto;
+}
+
+.signup > input[type="submit"]{
+    width: 6.4rem;
+    margin: $sml auto;
+    color: $title-color;
+    background-color: $primary;
+    border-radius: 5px;
+    border: none;
+    padding: $sml 0;
+    cursor: pointer;
+}
+
+.signup > div > input[type="text"]{
+    width: 50%;
+}
+
+.signup > div > input[type="password"]{
+    width: 50%;
+}
+
+.signup > div > label{
+    padding: 0.063rem;
+    width: 50%;
+    text-align: justify;
+}
+
+.signup .error{
+    width: 64%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

@@ -30,8 +30,8 @@ const Login = () => {
     }
   };
 
-  return <div>
-          <form onSubmit={handleSubmit}>
+  return <div className="form">
+          <form onSubmit={handleSubmit} className="login">
             <div>
               <label htmlFor="email">Email: </label>
               <input type="text" name="email"/>
@@ -40,10 +40,10 @@ const Login = () => {
               <label htmlFor="pass">Password: </label>
               <input type="password" name="pass"/>
             </div>
-            <p>{error}</p>
+            <p className="error">{error}</p>
             <input type="submit" value={"Login"}/>
           </form>
-          <p>Still haven't and account? <Link to={'/signup'}>Sign Up here</Link></p>
+          <p>Still haven't and account? <b><Link to={'/signup'} className="to-signup">Sign Up here</Link></b></p>
         </div>;
 };
 
