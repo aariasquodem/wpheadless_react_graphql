@@ -41,13 +41,15 @@ const PostByAuthor = () => {
 
   if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
 
-  if(result.data) return <div>
-                          {paintCards()}
+  if(result.data) return <>
+                          <div className="card-container">
+                            {paintCards()}
+                          </div>
                           <div>
                             <p className="no-more">{noMore}</p>
                             <button onClick={hasNextPage} className='more-btn'>+</button>
                           </div>
-                        </div>;
+                        </>;
 };
 
 export default PostByAuthor;
