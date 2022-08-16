@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {auth} from '../../firebase';
 import {signOut} from "firebase/auth";
 import Nav from '../Nav';
+import logoutlogo from '../../assets/logout-24.ico';
 
 const Header = () => {
 
@@ -20,7 +21,7 @@ const Header = () => {
   return <header>
           <div>
             <h1 className="page-title">React WPHeadless</h1>
-            {logged ? <button onClick={logOut}>Logout</button> : <></>}
+            {logged ? <button onClick={logOut} className="logout"><img src={logoutlogo} alt="logout"></img></button> : <></>}
           </div>
           <Nav/>
         </header>;

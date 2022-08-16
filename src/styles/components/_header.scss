@@ -9,3 +9,13 @@ header{
 .page-title{
     color: $title-color;
 }
+
+.logout{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
