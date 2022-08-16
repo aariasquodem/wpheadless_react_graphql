@@ -20,6 +20,7 @@ function App() {
 
   const [logged, setLogged] = useState(false);
   const [loggedUserName, setLoggedUserName] = useState('');
+  const [loggedUid, setLoggedUid] = useState('');
 
   useEffect(() => {
       onAuthStateChanged(auth, user => {
@@ -28,6 +29,7 @@ function App() {
           const getUser = async () => {
             const docRef = doc(db, "users", uid);
             const docSnap = await getDoc(docRef);
+            setLoggedUid(uid);
             setLoggedUserName(docSnap._document.data.value.mapValue.fields.username.stringValue);
           };
           getUser();
@@ -42,7 +44,9 @@ function App() {
     logged,
     setLogged,
     loggedUserName,
-    setLoggedUserName
+    setLoggedUserName,
+    loggedUid,
+    setLoggedUid
   };
 
   return (

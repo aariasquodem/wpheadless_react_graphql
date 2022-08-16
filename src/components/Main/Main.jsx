@@ -6,6 +6,7 @@ import Authors from '../Authors';
 import PostByAuthor from '../PostByAuthor'
 import Login from '../Login';
 import SignUp from '../SignUp';
+import Favs from '../Favs';
 
 const Main = () => {
   return <Routes>
@@ -15,6 +16,7 @@ const Main = () => {
             <Route path="/postby" element={<PostByAuthor/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/favourites" element={<Favs/>}/>
           </Routes>;
 };
 

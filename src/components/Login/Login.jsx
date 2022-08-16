@@ -7,7 +7,7 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 
 const Login = () => {
 
-  const {setLogged, setLoggedUserName} = useContext(userContext);
+  const {setLogged, setLoggedUserName, setLoggedUid} = useContext(userContext);
   const navigate = useNavigate();
   const[error, setError] = useState('')
 
@@ -18,6 +18,7 @@ const Login = () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       const uid = user._tokenResponse.localId;
+      setLoggedUid(uid);
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       setLogged(true);

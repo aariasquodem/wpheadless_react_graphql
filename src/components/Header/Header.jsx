@@ -8,13 +8,14 @@ import logoutlogo from '../../assets/logout-24.ico';
 
 const Header = () => {
 
-  const {setLogged, logged, setLoggedUserName} = useContext(userContext);
+  const {setLogged, logged, setLoggedUserName, setLoggedUid} = useContext(userContext);
   const navigate = useNavigate();
 
   const logOut = async() => {
     await signOut(auth);
     setLogged(false);
     setLoggedUserName('');
+    setLoggedUid('');
     navigate('/');
   };
 

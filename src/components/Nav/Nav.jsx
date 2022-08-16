@@ -11,7 +11,7 @@ const Nav = () => {
           <ul className="menu__box">
             <li><Link className="menu__item" to='/'>Posts</Link></li>
             <li><Link className="menu__item" to='/authors'>Authors</Link></li>
-            {logged ? <></> : <li><Link className="menu__item" to='/login'>Login</Link></li>}
+            {logged ? <li><Link className="menu__item" to='/favourites'>Favourites</Link></li> : <li><Link className="menu__item" to='/login'>Login</Link></li>}
           </ul> 
         </nav>;
 };

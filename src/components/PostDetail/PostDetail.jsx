@@ -8,10 +8,12 @@ import {userContext} from '../../context/userContext';
 import {POST_COMMENT} from '../../graphql/mutations';
 import {POST_DETAIL} from '../../graphql/queries';
 import CommentCard from '../CommentCard';
+import {db} from '../../firebase';
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 const PostDetail = () => {
 
-  const {logged, loggedUserName} = useContext(userContext);
+  const {logged, loggedUserName, loggedUid} = useContext(userContext);
 
   const [getPost, result] = useLazyQuery(POST_DETAIL);
   const [postComment] = useMutation(POST_COMMENT, {
@@ -47,6 +49,15 @@ const PostDetail = () => {
     e.target.reset();
   }
 
+  const addToFav = async() => {
+    const article = {'title': result.data.post.title, 'img': result.data.post.featuredImage.node.mediaItemUrl, 'id': window.location.href.split('=')[1]};
+    const docRef = doc(db, "users", loggedUid);
+
+    await updateDoc(docRef, {
+      favs: arrayUnion(article)
+    });
+  }
+
   if(result.error) return <h2>Error: {result.error.message}</h2>
 
   if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
@@ -55,6 +66,7 @@ const PostDetail = () => {
 
     return <>
             <div className="article-body">
+              {logged ? <button onClick={addToFav}>Fav</button> : <></>}
               <h2>{result.data.post.title}</h2>
               <Link to={`/postby/?author=${result.data.post.author.node.slug}`}><h5>{result.data.post.author.node.name}</h5></Link>
               <img src={result.data.post.featuredImage.node.mediaItemUrl} alt={result.data.post.featuredImage.node.altText} className="intro-img" />
