@@ -31,7 +31,7 @@ const PostDetail = () => {
 
   const sanitizedData = () => ({
     __html: DOMPurify.sanitize(result.data.post.content)
-  })
+  });
 
   const paintComments = () => result.data.post.comments.nodes.map((comment, i) =><CommentCard comment={comment} key={uuidv4()}/>);
 
@@ -44,10 +44,10 @@ const PostDetail = () => {
     }else if(!logged){
       setError('You must be logged to send comments');
     }else{
-      setError("You can't send an empty comment")
+      setError("You can't send an empty comment");
     };
     e.target.reset();
-  }
+  };
 
   const addToFav = async() => {
     const article = {'title': result.data.post.title, 'img': result.data.post.featuredImage.node.mediaItemUrl, 'id': window.location.href.split('=')[1]};
@@ -56,7 +56,7 @@ const PostDetail = () => {
     await updateDoc(docRef, {
       favs: arrayUnion(article)
     });
-  }
+  };
 
   if(result.error) return <h2>Error: {result.error.message}</h2>
 
