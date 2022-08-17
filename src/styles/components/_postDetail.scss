@@ -89,3 +89,17 @@ textarea:focus{
     display: flex;
     justify-content: center;
 }
+
+.fav-btn{
+    width: 24px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.fav-icon{
+    width: 24px;
+}

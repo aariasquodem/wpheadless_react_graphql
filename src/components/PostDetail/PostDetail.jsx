@@ -10,6 +10,7 @@ import {POST_DETAIL} from '../../graphql/queries';
 import CommentCard from '../CommentCard';
 import {db} from '../../firebase';
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import heartBtn from '../../assets/heart.png';
 
 const PostDetail = () => {
 
@@ -66,7 +67,7 @@ const PostDetail = () => {
 
     return <>
             <div className="article-body">
-              {logged ? <button onClick={addToFav}>Fav</button> : <></>}
+              {logged ? <button onClick={addToFav} className="fav-btn"><img src={heartBtn} alt='fav-button' className='fav-icon'/></button> : <></>}
               <h2>{result.data.post.title}</h2>
               <Link to={`/postby/?author=${result.data.post.author.node.slug}`}><h5>{result.data.post.author.node.name}</h5></Link>
               <img src={result.data.post.featuredImage.node.mediaItemUrl} alt={result.data.post.featuredImage.node.altText} className="intro-img" />

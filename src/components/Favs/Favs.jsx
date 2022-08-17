@@ -34,7 +34,7 @@ const Favs = () => {
 
   const paintCards = () => favouritesPosts.map((favPost, i)=> <FavouritesCard favPost={favPost} changeFavsState={()=>changeFavsState(i)} key={uuidv4()}/>);
 
-  return <div>{paintCards()}</div>;
+  return <div className="favs-container">{paintCards()}</div>;
 };
 
 export default Favs;

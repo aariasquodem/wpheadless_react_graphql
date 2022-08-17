@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {db} from '../../firebase';
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
 import {userContext} from '../../context/userContext';
+import trashBtn from '../../assets/trash.png';
 
 const FavouritesCard = ({changeFavsState, favPost}) => {
 
@@ -17,12 +18,12 @@ const FavouritesCard = ({changeFavsState, favPost}) => {
     changeFavsState();
   }
 
-  return <div>
-          <button onClick={removeFav}>remove</button>
+  return <div className="fav-card">
+          <button onClick={removeFav} className="trash-btn"><img src={trashBtn} className="trash-icon"/></button>
           <Link to={`/post/?id=${favPost.postid}`}>
-            <h4>{favPost.title}</h4>
-            <img src={favPost.img} alt="post-img" />
+            <h3>{favPost.title}</h3>
           </Link>
+          <img src={favPost.img} alt="post-img" className="fav-img"/>
         </div>;
 };
 

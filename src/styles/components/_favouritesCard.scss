@@ -1,0 +1,38 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.fav-card{
+    background-color: $item-bg;
+    width: 24rem;
+    padding: 2rem 0;
+    margin: 1.5rem;
+    border-radius: 5px;
+    position: relative;
+}
+
+.trash-btn{
+    width: 24px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 36px;
+}
+
+.trash-icon{
+    width: 24px;
+}
+
+.fav-card h3{
+    margin-bottom: $med;
+    width: 68%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fav-img{
+    width: 80%;
+}
