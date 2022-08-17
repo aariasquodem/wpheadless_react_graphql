@@ -4,7 +4,7 @@ import {db} from '../../firebase';
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
 import {userContext} from '../../context/userContext';
 
-const FavouritesCard = ({favPost}) => {
+const FavouritesCard = ({changeFavsState, favPost}) => {
 
   const {loggedUid} = useContext(userContext);
 
@@ -15,6 +15,7 @@ const FavouritesCard = ({favPost}) => {
     await updateDoc(docRef, {
       favs: arrayRemove(article)
     });
+    changeFavsState()
   }
 
   return <div>
