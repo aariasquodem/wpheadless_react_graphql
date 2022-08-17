@@ -1,13 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import {userContext} from '../../context/userContext';
 import {db, auth} from '../../firebase';
-import { setDoc,getDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const SignUp = () => {
 
-  const {setLogged, setLoggedUserName} = useContext(userContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -23,14 +21,11 @@ const SignUp = () => {
         const user = userCredential.user;
         await setDoc(doc(db, "users", user.uid), {
           'username': username,
-          'email': email
+          'email': email,
+          'favs': []
         });
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
         setError('');
         navigate('/');
-        setLogged(true);
-        setLoggedUserName(docSnap._document.data.value.mapValue.fields.username.stringValue);
       } catch (error) {
         console.log('Error:', error);
         setError('Invalid user or password');

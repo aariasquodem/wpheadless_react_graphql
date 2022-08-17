@@ -15,14 +15,16 @@ const Favs = () => {
       const docRef = doc(db, "users", loggedUid);
       const docSnap = await getDoc(docRef);
       const docArr = docSnap._document.data.value.mapValue.fields.favs.arrayValue.values;
-      const docFav = docArr.map(element => {
-        return {
-          'title': element.mapValue.fields.title.stringValue,
-          'img': element.mapValue.fields.img.stringValue,
-          'postid': element.mapValue.fields.id.stringValue,
-        }
-      })
-      setFavouritesPosts(docFav);
+      if(docArr){
+        const docFav = docArr.map(element => {
+          return {
+            'title': element.mapValue.fields.title.stringValue,
+            'img': element.mapValue.fields.img.stringValue,
+            'postid': element.mapValue.fields.id.stringValue,
+          }
+        })
+        setFavouritesPosts(docFav);
+      }
     };
     getDocs();
   }, [loggedUid]);

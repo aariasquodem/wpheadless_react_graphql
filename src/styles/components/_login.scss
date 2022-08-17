@@ -36,3 +36,30 @@
 .to-signup {
     color: $txt-color;
 }
+
+.icon {
+    background: url('https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+}
+
+.customGPlusSignIn{
+    color: $txt-color;
+    background-color: #fff;
+    border: thin solid #888;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px grey;
+    cursor: pointer;
+}
+
+.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 0px;
+    padding-right: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}

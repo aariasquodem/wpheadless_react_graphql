@@ -43,7 +43,7 @@ const PostDetail = () => {
       postComment({ variables: {'commentOn': result.data.post.databaseId, 'content': contentBody, 'author': loggedUserName}});
       setError('');
     }else if(!logged){
-      setError('You must be logged to send comments');
+      setError('error');
     }else{
       setError("You can't send an empty comment");
     };
@@ -53,7 +53,6 @@ const PostDetail = () => {
   const addToFav = async() => {
     const article = {'title': result.data.post.title, 'img': result.data.post.featuredImage.node.mediaItemUrl, 'id': window.location.href.split('=')[1]};
     const docRef = doc(db, "users", loggedUid);
-
     await updateDoc(docRef, {
       favs: arrayUnion(article)
     });
@@ -81,7 +80,7 @@ const PostDetail = () => {
                   <label htmlFor="content"><b>Comment:</b> </label>
                   {logged ? <textarea name="content" rows="4" cols="50" /> : <textarea name="content" rows="4" cols="50" disabled/>}
                 </div>
-                <p className='error'>{error}</p>
+                {logged ? <></> : <p className={error}>You must be logged to send comments</p>}
                 <input type="submit" value="Send" className="send-comment"/>
               </form>
             </div>

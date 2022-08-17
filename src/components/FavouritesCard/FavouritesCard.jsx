@@ -19,7 +19,7 @@ const FavouritesCard = ({changeFavsState, favPost}) => {
   }
 
   return <div className="fav-card">
-          <button onClick={removeFav} className="trash-btn"><img src={trashBtn} className="trash-icon"/></button>
+          <button onClick={removeFav} className="trash-btn"><img src={trashBtn} className="trash-icon" alt="google-btn"/></button>
           <Link to={`/post/?id=${favPost.postid}`}>
             <h3>{favPost.title}</h3>
           </Link>
