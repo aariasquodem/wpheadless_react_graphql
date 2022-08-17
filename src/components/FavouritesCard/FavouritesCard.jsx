@@ -11,11 +11,10 @@ const FavouritesCard = ({changeFavsState, favPost}) => {
   const removeFav = async() => {
     const article = {'title': favPost.title, 'img': favPost.img, 'id': favPost.postid};
     const docRef = doc(db, "users", loggedUid);
-
     await updateDoc(docRef, {
       favs: arrayRemove(article)
     });
-    changeFavsState()
+    changeFavsState();
   }
 
   return <div>
