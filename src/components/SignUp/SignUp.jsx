@@ -14,13 +14,14 @@ const SignUp = () => {
     const username = e.target.username.value.toLowerCase();
     const email = e.target.email.value;
     const password = e.target.pass.value;
+    const regexUsername = /^\S*$/;
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_\-])(?=.{8,})/;
-    if(regexPassword.test(password)){
+    if(regexPassword.test(password) && regexUsername.test(username)){
       try {
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("username", "==", username));
         const querySnapshot = await getDocs(q);
-        let result
+        let result;
         querySnapshot.forEach((doc) => {
           result = doc.data().username;
         });
@@ -42,7 +43,7 @@ const SignUp = () => {
         setError('Invalid username or password');
       }
     } else{
-      setError('Password must contain at least 8 alphanumeric characters, 1 uppercase letter and a special character');
+      setError("Username can't contain white spaces and password must contain at least 8 alphanumeric characters, 1 uppercase letter and a special character");
     }
   };
 
