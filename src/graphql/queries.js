@@ -91,7 +91,7 @@ export const POST_DETAIL = gql`
         }
       }
       content
-      comments(where: {orderby: COMMENT_DATE, order: ASC}, first: 100) {
+      comments(where: {orderby: COMMENT_DATE, order: ASC}, first: 1000) {
         nodes {
           content
           author {
