@@ -27,7 +27,6 @@ const Login = () => {
     try {
       const provider = new GoogleAuthProvider();
       return signInWithPopup(auth, provider).then(result => {
-        console.log(result);
         const uid = result.user.uid;
         const docRef = doc(db, "users", uid);
         const docSnap = getDoc(docRef);
