@@ -64,7 +64,7 @@ const Login = () => {
             <span className="icon"></span>
             <span className="buttonText">Google</span>
           </button>
-          <p>Still haven't and account? <b><Link to={'/signup'} className="to-signup">Sign Up here</Link></b></p>
+          <p>Still haven't an account? <b><Link to={'/signup'} className="to-signup">Sign Up here</Link></b></p>
         </div>;
 };
 
