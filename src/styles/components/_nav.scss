@@ -22,6 +22,7 @@
     width: 34%;
     height: 100%;
     display: flex;
+    font-family: $title-font;
 }
 
 .menu__box li:hover{
@@ -37,5 +38,20 @@
     border-left: 1px solid #dedede;
     width: 100%;
     font-size: 24px;
-    padding: 16px 32px;
+    display: grid;
+    place-items: center;
+}
+
+.menu__box li.logout-li{
+    border-left: 1px solid #dedede;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.logout{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 12px;
 }

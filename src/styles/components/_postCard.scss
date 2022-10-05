@@ -7,27 +7,39 @@
     padding: 2rem 0;
     margin: 1.5rem;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px rgb(0 0 0 / 40%);
 }
 
 .title{
-    color: $txt-color;
+    color: $post-title;
+    font-size: 35px;
+    line-height: 39px;
+    font-family: $title-font;
 }
 
 .excerpt{
     width: 80%;
     margin: 1rem auto;
+    font-family: $txt-font;
+    color: $txt-color;
     text-align: justify;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .featured-image{
     width: 80%;
     border-radius: 5px;
+    object-fit: cover;
+    height: 192px;
 }
 
 .author{
     text-align: right;
     width: 80%;
     margin: 1rem auto;
+    font-family: $txt-font;
+    color: $txt-color;
 }
 
 .author a{

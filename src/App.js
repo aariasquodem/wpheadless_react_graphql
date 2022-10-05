@@ -7,6 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 import {auth, db} from './firebase';
 import Main from './components/Main';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './styles/styles.scss';
 
 const client = new ApolloClient({
@@ -59,6 +60,7 @@ function App() {
           </userContext.Provider>
         </ApolloProvider>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

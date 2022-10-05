@@ -1,0 +1,107 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+footer{
+    padding: 0px;
+    color: #eee;
+    font-size: 14px;
+    margin-top: 24px;
+    border-top: 1px solid #e4e4e4;
+    background: #fff;
+}
+
+.content-footer-full{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo-footer{
+    width: 132px;
+    padding: 24px;
+}
+
+.content-iso,
+.content-partner{
+    display: flex;
+    align-items: center;
+}
+
+.content-iso p{
+    color: $post-title;
+    width: 116px;
+    text-align: initial;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: $title-font;
+    padding: 10px 0px 0px 0px;
+}
+.content-partner p{
+    color: $post-title;
+    text-align: initial;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: $title-font;
+    padding: 10px 16px 0px 0px;
+}
+
+.content-partner img{
+    margin-right: 24px;
+}
+
+.content-footer-full.blue.border-bot{
+    border-bottom: 1px solid #63789e;
+    background-color: $post-title;
+    width: 100%;
+}
+
+.content-footer-full.blue{
+    background-color: $post-title;
+    width: 100%;
+}
+
+.content-redes{
+    width: 128px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-twitter{
+    background: url(https://quogame.quodem.net/wp-content/themes/quodem-theme/img/icon/icon-twitter.png) center center no-repeat;
+    height: 34px;
+    width: 34px;
+    display: block;
+}
+
+.icon-linkedin{
+    background: url(https://quogame.quodem.net/wp-content/themes/quodem-theme/img/icon/icon-linkedin.png) center center no-repeat;
+    height: 34px;
+    width: 34px;
+    display: block;
+}
+
+.icon-youtube{
+    background: url(https://quogame.quodem.net/wp-content/themes/quodem-theme/img/icon/icon-youtube.png) center center no-repeat;
+    height: 34px;
+    width: 34px;
+    display: block;
+}
+
+.content-privacy{
+    width: 432px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content-privacy a{
+    color: #fff;
+}
+
+.content-copy{
+    text-align: center;
+    padding: 12px 0px;
+    font-size: 12px;
+}

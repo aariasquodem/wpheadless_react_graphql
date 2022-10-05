@@ -12,24 +12,25 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 8px;
 }
 
 .page-title{
-    color: #0b2c68;
-}
-
-.logout{
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 0;
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    color: $post-title;
+    font-family: $title-font;
+    width: 240px;
 }
 
 .logo-container{
     display: flex;
-    width: 35%;
-    justify-content: space-evenly;
+    width: 440px;
+    justify-content: center;
+}
+
+.logo-container img{
+    width: 132px;
+}
+
+.space{
+    margin-left: 8px;
 }

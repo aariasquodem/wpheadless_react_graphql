@@ -6,20 +6,21 @@
 
 body{
     height: 100vh;
-    background-color: #e2eef5;
-    color: $txt-color;
+    color: #333;
+    background-image: url(https://quogame.quodem.net/wp-content/uploads/2022/07/bg-normal-1.jpg);
+    background-repeat: inherit;
+    font-family: $txt-font;
 }
 
 .spinner{
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    padding-top: 128px;
 }
 
 .App {
     text-align: center;
-    padding-bottom: $med;
 }
 
 .App-header {

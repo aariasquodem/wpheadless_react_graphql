@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 $primary: #00857a;
 $secondary: #dedede;
-$item-bg: #CFD8DC;
+$item-bg: #fff;
 $body-bg: #e2eef5;
 $title-color: #1a87c7;
-$txt-color: #333;
+$post-title: #0b2c68;
+$txt-color: #606060;
+
+$title-font: 'Oswald', sans-serif;
+$txt-font: 'Roboto', sans-serif;
 
 $sml: 0.75rem;
 $med: 1rem;
