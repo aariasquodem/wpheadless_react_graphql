@@ -3,10 +3,14 @@
 
 .favs-container{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    padding-top: 88px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .favs-container a{
-    color: $txt-color;
+    color: $post-title;
+    font-family: $title-font;
 }

@@ -60,13 +60,13 @@ const PostDetail = () => {
 
   if(result.error) return <h2>Error: {result.error.message}</h2>
 
-  if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
+  if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#1a87c7'}  size={100}/></div>
 
   if(result.data){
 
-    return <>
+    return <div className='post-container'>
             <div className="article-body">
-              {logged ? <button onClick={addToFav} className="fav-btn"><img src={heartBtn} alt='fav-button' className='fav-icon'/></button> : <></>}
+              {logged ? <button onClick={addToFav} className="fav-btn"></button> : <></>}
               <h2>{result.data.post.title}</h2>
               <Link to={`/postby/?author=${result.data.post.author.node.slug}`}><h5>{result.data.post.author.node.name}</h5></Link>
               <img src={result.data.post.featuredImage.node.mediaItemUrl} alt={result.data.post.featuredImage.node.altText} className="intro-img" />
@@ -75,16 +75,18 @@ const PostDetail = () => {
             <div className='article-comments'>
               <h3>Comments</h3>
               {paintComments()}
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="comment-form">
                 <div className="content-comment">
                   <label htmlFor="content"><b>Comment:</b> </label>
                   {logged ? <textarea name="content" rows="4" cols="50" /> : <textarea name="content" rows="4" cols="50" disabled/>}
                 </div>
                 {logged ? <></> : <p className={error}>You must be logged to send comments</p>}
-                <input type="submit" value="Send" className="send-comment"/>
+                <div className='send-comment-container'>
+                  <input type="submit" value="Send" className="send-comment"/>
+                </div>
               </form>
             </div>
-          </>
+          </div>
   }
 };
 

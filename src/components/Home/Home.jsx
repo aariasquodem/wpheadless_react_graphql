@@ -40,7 +40,7 @@ const Home = () => {
                 <div className="card-container">
                   {paintCards()}
                 </div> 
-                <div>
+                <div className="btn-container">
                   <p className="no-more">{noMore}</p>
                   <button onClick={hasNextPage} className='more-btn'>+</button>
                 </div>

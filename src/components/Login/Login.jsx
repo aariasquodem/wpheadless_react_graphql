@@ -47,24 +47,26 @@ const Login = () => {
     }
   }
 
-  return <div className="form">
-          <form onSubmit={handleSubmit} className="login">
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input type="text" name="email"/>
-            </div>
-            <div>
-              <label htmlFor="pass">Password: </label>
-              <input type="password" name="pass"/>
-            </div>
-            <p className="error">{error}</p>
-            <input type="submit" value={"Login"}/>
-          </form>
-          <button className="customGPlusSignIn" onClick={authWithGoogle}>
-            <span className="icon"></span>
-            <span className="buttonText">Google</span>
-          </button>
-          <p>Still haven't an account? <b><Link to={'/signup'} className="to-signup">Sign Up here</Link></b></p>
+  return <div className="form-container">
+          <div className="form">
+            <form onSubmit={handleSubmit} className="login">
+              <div>
+                <label htmlFor="email">Email: </label>
+                <input type="text" name="email"/>
+              </div>
+              <div>
+                <label htmlFor="pass">Password: </label>
+                <input type="password" name="pass"/>
+              </div>
+              <p className="error">{error}</p>
+              <input type="submit" value={"Login"}/>
+            </form>
+            <button className="customGPlusSignIn" onClick={authWithGoogle}>
+              <span className="icon"></span>
+              <span className="buttonText">Google</span>
+            </button>
+            <p>Still haven't an account? <b><Link to={'/signup'} className="to-signup">Sign Up here</Link></b></p>
+          </div>
         </div>;
 };
 

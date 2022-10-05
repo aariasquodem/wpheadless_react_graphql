@@ -11,7 +11,11 @@ const Footer = () => {
             </div>
             <div className="content-partner">
               <p>Partner:</p>
-              <img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/md-vip.png" alt="WPVip" /><img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/ui-path.png" alt="UI-Path" /><img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/validated-id.png" alt="Validated-ID" />
+              <div className="partner-logo-container">
+                <img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/md-vip.png" alt="WPVip" />
+                <img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/ui-path.png" alt="UI-Path" />
+                <img src="https://quogame.quodem.net/wp-content/themes/quodem-theme/img/logos/validated-id.png" alt="Validated-ID" />
+              </div>
             </div>
           </div>
           <div className="content-footer-full blue border-bot">

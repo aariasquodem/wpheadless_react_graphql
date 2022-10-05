@@ -15,8 +15,8 @@ const Authors = () => {
 
   return <>
           {loading
-            ? <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
-            : <div>{paintCards()}</div>
+            ? <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#1a87c7'}  size={100}/></div>
+            : <div className="author-container">{paintCards()}</div>
             }
         </>
 };

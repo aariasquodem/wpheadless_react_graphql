@@ -20,10 +20,15 @@
     background-color: transparent;
     position: absolute;
     right: 36px;
+    background-image: url('../../assets/trash.png');
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 12px;
 }
 
-.trash-icon{
-    width: 24px;
+.trash-btn:hover{
+    background-image: url('../../assets/trash-yellow.png');
 }
 
 .fav-card h3{
@@ -35,4 +40,7 @@
 
 .fav-img{
     width: 80%;
+    border-radius: 5px;
+    object-fit: cover;
+    height: 192px;
 }

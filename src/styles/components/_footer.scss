@@ -8,11 +8,13 @@ footer{
     margin-top: 24px;
     border-top: 1px solid #e4e4e4;
     background: #fff;
+    margin-top: auto;
 }
 
 .content-footer-full{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 80%;
     margin: 0 auto;
 }
@@ -26,6 +28,10 @@ footer{
 .content-partner{
     display: flex;
     align-items: center;
+}
+
+.content-iso{
+    flex-wrap: wrap;
 }
 
 .content-iso p{
@@ -104,4 +110,32 @@ footer{
     text-align: center;
     padding: 12px 0px;
     font-size: 12px;
+}
+
+@media only screen and (max-width: 657px){
+    .content-partner{
+        flex-direction: column;
+    }
+    .content-partner p{
+        padding-bottom: 8px;
+    }
+
+    .partner-logo-container{
+        margin-top: 8px;
+    }
+
+    .partner-logo-container img{
+        margin: 8px;
+    }
+}
+
+@media only screen and (max-width: 472px){
+    .content-privacy{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .content-privacy a{
+        margin: 8px 8px 8px 0;
+    }
 }

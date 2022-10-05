@@ -47,6 +47,10 @@
     display: grid;
     place-items: center;
     cursor: pointer;
+    background-image: url('../../assets/logout-blue.png');
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .logout{
@@ -54,4 +58,8 @@
     border: none;
     background-color: transparent;
     padding: 12px;
+}
+
+.menu__box li.logout-li:hover{
+    background-image: url('../../assets/logout-white.png');
 }

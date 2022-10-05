@@ -39,13 +39,13 @@ const PostByAuthor = () => {
 
   if(result.error) return <h2>Error: {result.error.message}</h2>
 
-  if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
+  if(result.loading) return <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#1a87c7'}  size={100}/></div>
 
   if(result.data) return <>
                           <div className="card-container">
                             {paintCards()}
                           </div>
-                          <div>
+                          <div className="btn-container">
                             <p className="no-more">{noMore}</p>
                             <button onClick={hasNextPage} className='more-btn'>+</button>
                           </div>

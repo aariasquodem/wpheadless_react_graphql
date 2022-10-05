@@ -47,23 +47,25 @@ const SignUp = () => {
     }
   };
 
-  return <div className="form">
-          <form onSubmit={handleSubmit} className="signup">
-            <div>
-              <label htmlFor="username">Username: </label>
-              <input type="text" name="username"/>
-            </div>
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input type="text" name="email"/>
-            </div>
-            <div>
-              <label htmlFor="pass">Password: </label>
-              <input type="password" name="pass"/>
-            </div>
-            <p className="error">{error}</p>
-            <input type="submit" value={"Sign Up"}/>
-          </form>
+  return <div className="form-container">
+          <div className="form">
+            <form onSubmit={handleSubmit} className="signup">
+              <div>
+                <label htmlFor="username">Username: </label>
+                <input type="text" name="username"/>
+              </div>
+              <div>
+                <label htmlFor="email">Email: </label>
+                <input type="text" name="email"/>
+              </div>
+              <div>
+                <label htmlFor="pass">Password: </label>
+                <input type="password" name="pass"/>
+              </div>
+              <p className="error">{error}</p>
+              <input type="submit" value={"Sign Up"}/>
+            </form>
+          </div>
         </div>;
 };
 

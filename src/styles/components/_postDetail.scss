@@ -1,6 +1,11 @@
 @import '../utils/variables.scss';
 @import '../utils/mixins.scss';
 
+.post-container{
+    padding-top: 88px;
+    margin-bottom: 32px;
+}
+
 .article-body{
     @include card;
 }
@@ -8,7 +13,18 @@
 .article-body h2,
 .article-body h5{
     margin-top: $med;
-    color: $txt-color;
+    color: $post-title;
+    font-family: $title-font;
+}
+
+.article-body a{
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-body h5:hover{
+    color: #e5c322;
 }
 
 .article-body .intro-img{
@@ -36,38 +52,8 @@ figure a img{
 
 .article-comments h3{
     text-align: center;
-}
-
-.content-comment{
-    display: flex;
-    flex-direction: column;
-}
-
-.send-comment{
-    color: $secondary;
-    background-color: $primary;
-    border: none;
-    cursor: pointer;
-}
-
-.send-comment:hover{
-    box-shadow: $light-shadow;
-}
-
-.author-comment input:focus{
-    outline: none !important;
-    border:1px solid $primary;
-    box-shadow: $light-shadow;
-}
-
-textarea:focus{
-    outline: none !important;
-    border:1px solid $primary;
-    box-shadow: $light-shadow;
-}
-
-.error{
-    color: red;
+    color: $post-title;
+    font-family: $title-font;
 }
 
 .blocks-gallery-grid{
@@ -102,4 +88,69 @@ textarea:focus{
 
 .fav-icon{
     width: 24px;
+}
+
+.comment-form{
+    margin: 1rem 24px;
+    padding: 0 16px;
+}
+
+.content-comment{
+    display: flex;
+    flex-direction: column;
+}
+
+.send-comment-container{
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.send-comment{
+    margin: 0.75rem auto;
+    color: #fff;
+    background: #e5c322;
+    border-radius: 25px;
+    border: none;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    width: 192px;
+    font-size: 16px;
+}
+
+.author-comment input:focus{
+    outline: none !important;
+    border:1px solid #e5c322;
+}
+
+textarea:focus{
+    outline: none !important;
+    border:1px solid #e5c322;
+}
+
+.error{
+    color: red;
+}
+
+.content-comment label{
+    margin-bottom: 16px;
+}
+
+.comment-form p{
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.fav-btn{
+    background-image: url('../../assets/heart.png');
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 12px;
+    margin-right: 16px;
+    margin-top: 16px;
+}
+
+.fav-btn:hover{
+    background-image: url('../../assets/yellow-heart.png');
 }
