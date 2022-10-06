@@ -20,3 +20,18 @@
 .author-card img{
     border-radius: 50%;
 }
+
+@media only screen and (max-width: 768px){
+    .author-card{
+        width: 50%;
+    }
+
+    .author-card{
+        flex-direction: column;
+    }
+
+    .author-card img,
+    .author-card a{
+        margin-top: 16px;
+    }
+}
